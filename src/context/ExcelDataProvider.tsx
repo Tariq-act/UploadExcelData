@@ -1,6 +1,6 @@
 // File: DataContext.tsx
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { ExcelData, ExcelRecord } from '../utils/types';
+import { ExcelRecord } from '../utils/types';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/db';
 
@@ -35,6 +35,7 @@ export const DataProvider: React.FC<DataContextProps> = ({ children }) => {
       }));
 
       // console.log('Data from Firestore:', data);
+      // @ts-ignore
       setExcelData(data);
       // return data;
     } catch (error) {
