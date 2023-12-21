@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import * as XLSX from 'xlsx';
 import { ExcelData } from './types';
 import { uploadDataToFirestore } from './uploadToFirestore';
@@ -23,8 +22,6 @@ export const handleUpload = async (file: File,) => {
       const jsonData = XLSX.utils.sheet_to_json<ExcelData>(sheet, {
         header: 1,
       });
-
-      console.log(jsonData);
 
       uploadDataToFirestore(jsonData);
 

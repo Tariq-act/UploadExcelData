@@ -1,9 +1,11 @@
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { ExcelData } from "./types";
 import { db } from "../firebase/db";
+import toast from "react-hot-toast";
 
 export const uploadDataToFirestore = async (jsonData: ExcelData[]) => {
   const firestoreCollection = collection(db, 'excelData');
+  let duplicateErrorShown = false;
 
   for (const record of jsonData) {
     const id = record[0];
@@ -23,7 +25,6 @@ export const uploadDataToFirestore = async (jsonData: ExcelData[]) => {
           const [recordId, firstName, lastName, email, gender, address, mobile] = record;
 
           await addDoc(firestoreCollection, {
-            // Map your Excel columns to Firestore fields
             id: recordId,
             firstName,
             lastName,
@@ -31,15 +32,17 @@ export const uploadDataToFirestore = async (jsonData: ExcelData[]) => {
             gender,
             address,
             mobile,
-            // Add more fields as needed
           });
 
-          // console.log(`Record with id ${id} uploaded to Firestore.`);
         } catch (error) {
           console.error('Error uploading record:', error);
         }
       } else {
-        console.warn(`Duplicate record found for id: ${id}`);
+        if (!duplicateErrorShown) {
+          console.warn(`Duplicate record found for id: ${id}`);
+          toast.error('Duplicate record found');
+          duplicateErrorShown = true;
+        }
       }
     } else {
       console.warn('Invalid or duplicate id found in the record:', record);
@@ -47,5 +50,6 @@ export const uploadDataToFirestore = async (jsonData: ExcelData[]) => {
   }
 
   console.log('Data upload to Firestore completed.');
+  toast.success('Successfully added data');
 
 };

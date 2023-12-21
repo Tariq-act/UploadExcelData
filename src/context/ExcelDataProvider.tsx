@@ -1,4 +1,3 @@
-// File: DataContext.tsx
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { ExcelRecord } from '../utils/types';
 import { collection, getDocs } from 'firebase/firestore';
@@ -34,7 +33,6 @@ export const DataProvider: React.FC<DataContextProps> = ({ children }) => {
         ...doc.data(),
       }));
 
-      // console.log('Data from Firestore:', data);
       // @ts-ignore
       setExcelData(data);
       // return data;

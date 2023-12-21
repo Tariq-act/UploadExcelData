@@ -1,12 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import {
-  Box,
-  Button,
-  // CircularProgress,
-  // Input,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { handleUpload } from '../utils/convertExcelToJson';
 import { useData } from '../context/ExcelDataProvider';
 
@@ -44,7 +38,6 @@ const UploadExcelToFirestore = () => {
 
   useEffect(() => {
     if (uploadStatus === 'success' || uploadStatus === 'error') {
-      // You can trigger additional actions or UI changes based on the upload status
       fetchDataFromFirestore();
     }
   }, [fetchDataFromFirestore, uploadStatus]);
