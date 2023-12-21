@@ -1,8 +1,10 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Input, InputLabel, Typography } from '@mui/material';
 import { handleUpload } from '../utils/convertExcelToJson';
 import { useData } from '../context/ExcelDataProvider';
+// import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { MdAttachFile } from 'react-icons/md';
 
 const UploadExcelToFirestore = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -44,18 +46,22 @@ const UploadExcelToFirestore = () => {
 
   return (
     <Box display='flex' alignItems='center'>
-      <label htmlFor='file-input'>
-        <input
-          id='file-input'
-          type='file'
-          accept='.xls, .xlsx'
-          onChange={handleFileChange}
-          style={{ display: 'none' }}
-        />
-        <Button variant='contained' component='span'>
+      <InputLabel htmlFor='file-input'>
+        <Button
+          variant='contained'
+          component='span'
+          startIcon={<MdAttachFile />}
+        >
           Choose File
         </Button>
-      </label>
+      </InputLabel>
+      <Input
+        id='file-input'
+        type='file'
+        inputProps={{ accept: '.xls, .xlsx' }}
+        onChange={handleFileChange}
+        sx={{ display: 'none' }}
+      />
       <Button
         variant='contained'
         disabled={!file || isLoading}
