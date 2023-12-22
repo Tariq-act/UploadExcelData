@@ -43,13 +43,13 @@ function App() {
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <MdDarkMode />
+          <MdLightMode />
           <Switch
             checked={isDarkTheme}
             onChange={toggleTheme}
             color='default'
           />
-          <MdLightMode />
+          <MdDarkMode />
         </Box>
         <TableFormat excelData={data} />
       </Box>

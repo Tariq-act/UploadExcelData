@@ -35,12 +35,19 @@ const TableFormat = ({ excelData }: { excelData: DataType[] }) => {
 
   // sx={{ maxWidth: 300, margin: 'auto', marginBottom: '1rem' }}
   return (
-    <Box>
+    <Box
+      sx={{
+        '@media (max-width: 800px)': {
+          maxWidth: '100%',
+        },
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           marginBottom: '1rem',
+          gap: '1rem',
         }}
       >
         <Box>
@@ -48,6 +55,7 @@ const TableFormat = ({ excelData }: { excelData: DataType[] }) => {
             id='outlined-search'
             label='Search field'
             type='search'
+            size='small'
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Box>
@@ -56,9 +64,8 @@ const TableFormat = ({ excelData }: { excelData: DataType[] }) => {
       <TableContainer
         component={Paper}
         sx={{
-          maxWidth: '900px',
-          minWidth: '900px',
           margin: 'auto',
+          minWidth: '100%',
         }}
       >
         <Table
@@ -66,14 +73,28 @@ const TableFormat = ({ excelData }: { excelData: DataType[] }) => {
           sx={{ maxWidth: '100%', margin: 'auto' }}
         >
           <TableHead>
-            <TableRow>
-              <TableCell align='center'>ID</TableCell>
-              <TableCell align='center'>First Name</TableCell>
-              <TableCell align='center'>Last Name</TableCell>
-              <TableCell align='center'>Email</TableCell>
-              <TableCell align='center'>Gender</TableCell>
-              <TableCell align='center'>Address</TableCell>
-              <TableCell align='center'>Mobile</TableCell>
+            <TableRow sx={{ fontWeight: 'bold' }}>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>
+                ID
+              </TableCell>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>
+                First Name
+              </TableCell>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>
+                Last Name
+              </TableCell>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>
+                Email
+              </TableCell>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>
+                Gender
+              </TableCell>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>
+                Address
+              </TableCell>
+              <TableCell align='center' sx={{ fontWeight: 'bold' }}>
+                Mobile
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
