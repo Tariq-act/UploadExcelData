@@ -10,6 +10,7 @@ import {
   Box,
 } from '@mui/material';
 import { useState } from 'react';
+import FileUpload from './FileUploader';
 
 interface DataType {
   id: number;
@@ -32,20 +33,33 @@ const TableFormat = ({ excelData }: { excelData: DataType[] }) => {
     row.firstName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // sx={{ maxWidth: 300, margin: 'auto', marginBottom: '1rem' }}
   return (
     <Box>
-      <Box sx={{ maxWidth: 300, margin: 'auto', marginBottom: '1rem' }}>
-        <TextField
-          id='outlined-search'
-          label='Search field'
-          type='search'
-          fullWidth
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: '1rem',
+        }}
+      >
+        <Box>
+          <TextField
+            id='outlined-search'
+            label='Search field'
+            type='search'
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </Box>
+        <FileUpload />
       </Box>
       <TableContainer
         component={Paper}
-        sx={{ maxWidth: '900px', margin: 'auto' }}
+        sx={{
+          maxWidth: '900px',
+          minWidth: '900px',
+          margin: 'auto',
+        }}
       >
         <Table
           aria-label='simple table'
