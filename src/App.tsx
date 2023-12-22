@@ -2,7 +2,7 @@ import TableFormat from './components/Table';
 import { useData } from './context/ExcelDataProvider';
 
 import { useEffect, useState } from 'react';
-import { Box, Switch, Typography } from '@mui/material';
+import { Box, Switch } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
